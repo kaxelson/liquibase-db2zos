@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+group = 'net.noslexa.liquibase'
+version = '1.0'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.slf4j:slf4j-api:1.7.5'
+	compile 'org.liquibase:liquibase-core:3.2.0-SNAPSHOT'
+
+	testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: 'https://api.bintray.com/maven/kaxelson/maven/net.noslexa.liquibase') {
+				authentication(userName: bintrayUser, password: bintrayPassword)
+			}
+		}
+	}
+}
